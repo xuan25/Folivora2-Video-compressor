@@ -1,0 +1,88 @@
+﻿<Window x:Class="Folivora.MiniWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Folivora"
+        mc:Ignorable="d"
+        Title="Folivora Mini" Height="90" Width="90" Visibility="Visible" AllowsTransparency="True" WindowStyle="None" Focusable="False" Background="Transparent" ShowActivated="False" ShowInTaskbar="False">
+    <Grid>
+        <!--立绘区域-->
+        <Image x:Name="ImageBox" MouseLeftButtonDown="Drag"></Image>
+        <!--进度条区域-->
+        <Grid x:Name="ProcessBarGrid" Height="90" Width="90" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <!--辉光-->
+            <Grid x:Name="GlowGrid" MouseLeftButtonDown="Drag" MouseRightButtonDown="WindowChange" Width="50"  Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,0,0">
+                <Grid.Effect>
+                    <BlurEffect Radius="20"/>
+                </Grid.Effect>
+                <Path x:Name="GlowPathRight" Fill="Gray">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure StartPoint="25,25" IsClosed="True">
+                                <LineSegment Point="25,0"/>
+                                <ArcSegment x:Name="GlowArcRight" Size="25,25" Point="25,50" SweepDirection="Clockwise"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+                <Path x:Name="GlowPathLeft" Fill="Gray">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure StartPoint="25,25" IsClosed="True">
+                                <LineSegment Point="25,50"/>
+                                <ArcSegment x:Name="GlowArcLeft" Size="25,25" Point="25,0" SweepDirection="Clockwise"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+            </Grid>
+            <!--内部-->
+            <Grid x:Name="ArcGrid" MouseLeftButtonDown="Drag" MouseRightButtonDown="WindowChange" Width="50"  Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,0,0">
+                <!--填充-->
+                <Path x:Name="FillPathRight" Fill="Gray">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure StartPoint="25,25" IsClosed="True">
+                                <LineSegment Point="25,0"/>
+                                <ArcSegment x:Name="FillArcRight" Size="25,25" Point="25,50" SweepDirection="Clockwise"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+                <Path x:Name="FillPathLeft" Fill="Gray">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure StartPoint="25,25" IsClosed="True">
+                                <LineSegment Point="25,50"/>
+                                <ArcSegment x:Name="FillArcLeft" Size="25,25" Point="25,0" SweepDirection="Clockwise"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+                <!--扩充点击识别区域-->
+                <Path Fill="Transparent">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure StartPoint="25,25" IsClosed="True">
+                                <LineSegment Point="25,0"/>
+                                <ArcSegment Size="25,25" Point="25,50" SweepDirection="Clockwise"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+                <Path Fill="Transparent">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure StartPoint="25,25" IsClosed="True">
+                                <LineSegment Point="25,50"/>
+                                <ArcSegment Size="25,25" Point="25,0" SweepDirection="Clockwise"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+            </Grid>
+            <Image x:Name="MaskBox" Width="90"  Height="90" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,0" IsHitTestVisible="False"/>
+        </Grid>
+    </Grid>
+</Window>
